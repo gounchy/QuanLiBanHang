@@ -1,0 +1,81 @@
+﻿Ma,Ten,Loai,Gia,SL
+1,Chuột Logitech M185,Điện tử,200000,15
+2,Bàn phím cơ Akko 3087,Điện tử,1200000,8
+3,Tai nghe Gaming Razer,Điện tử,1500000,12
+4,Màn hình Dell 24 inch,Điện tử,3500000,5
+5,Laptop Acer Aspire 5,Điện tử,14500000,6
+6,Điện thoại Samsung A14,Điện tử,4500000,10
+7,Ốp lưng iPhone 15,Phụ kiện,150000,30
+8,Sạc dự phòng Anker 10000mAh,Điện tử,600000,20
+9,Loa Bluetooth JBL Go 3,Điện tử,1200000,14
+10,USB SanDisk 32GB,Lưu trữ,200000,25
+11,Ổ cứng HDD 1TB Seagate,Lưu trữ,1200000,10
+12,Ổ cứng SSD 500GB Samsung,Lưu trữ,2000000,12
+13,Áo thun nam basic,Thời trang,150000,40
+14,Áo sơ mi nữ trắng,Thời trang,250000,35
+15,Quần jeans nam xanh,Thời trang,400000,25
+16,Váy công sở,Thời trang,350000,18
+17,Giày sneaker Nike,Thời trang,1800000,15
+18,Giày sandal nữ,Thời trang,500000,20
+19,Balo laptop Targus,Phụ kiện,900000,22
+20,Túi xách nữ da PU,Thời trang,700000,18
+21,Nồi cơm điện Sharp 1.8L,Gia dụng,1200000,10
+22,Bếp điện từ Sunhouse,Gia dụng,1800000,12
+23,Quạt đứng Asia,Gia dụng,600000,15
+24,Điều hòa Daikin 1HP,Điện máy,8500000,5
+25,Tủ lạnh Toshiba 180L,Điện máy,5500000,4
+26,Máy giặt LG 8kg,Điện máy,7500000,3
+27,Ấm siêu tốc Philips,Gia dụng,400000,25
+28,Đèn bàn học Rạng Đông,Đèn,250000,30
+29,Bình giữ nhiệt Lock&Lock 500ml,Đồ dùng,350000,40
+30,Bộ chén sứ Minh Long 6 cái,Đồ dùng,500000,20
+31,Bút bi Thiên Long,Đồ dùng học tập,5000,200
+32,Vở 200 trang Campus,Đồ dùng học tập,15000,100
+33,Balo học sinh,Đồ dùng học tập,300000,50
+34,Thước kẻ 30cm,Đồ dùng học tập,10000,150
+35,Bút highlight Stabilo,Đồ dùng học tập,20000,80
+36,Tẩy bút chì Mono,Đồ dùng học tập,5000,100
+37,Bàn làm việc gỗ MDF,Nội thất,2500000,8
+38,Ghế văn phòng xoay,Nội thất,1800000,12
+39,Kệ sách 3 tầng,Nội thất,1200000,10
+40,Tủ quần áo gỗ 2 cánh,Nội thất,4500000,5
+41,Chăn ga gối cotton 4 món,Nội thất,1200000,15
+42,Nệm cao su Dunlopillo,Nội thất,8000000,3
+43,Sữa tươi Vinamilk 1L,Thực phẩm,35000,100
+44,Mì Hảo Hảo thùng 30 gói,Thực phẩm,120000,50
+45,Gạo ST25 5kg,Thực phẩm,180000,30
+46,Dầu ăn Neptune 1L,Thực phẩm,55000,40
+47,Nước mắm Nam Ngư 750ml,Thực phẩm,30000,50
+48,Nước ngọt Coca-Cola lon,Thực phẩm,10000,200
+49,Nước suối Lavie 500ml,Thực phẩm,7000,150
+50,Cà phê G7 hòa tan 20 gói,Thực phẩm,60000,80
+51,Bánh Oreo hộp 133g,Thực phẩm,25000,90
+52,Snack khoai tây Lay’s,Thực phẩm,20000,100
+53,Sữa rửa mặt Senka,Chăm sóc cá nhân,90000,50
+54,Dầu gội Clear 650ml,Chăm sóc cá nhân,150000,30
+55,Dầu xả Pantene 650ml,Chăm sóc cá nhân,140000,28
+56,Kem đánh răng Colgate 200g,Chăm sóc cá nhân,50000,60
+57,Bàn chải đánh răng Oral-B,Chăm sóc cá nhân,35000,70
+58,Nước hoa hồng Hada Labo,Chăm sóc cá nhân,200000,25
+59,Kem dưỡng da Nivea,Chăm sóc cá nhân,120000,30
+60,Nước tẩy trang Bioderma,Chăm sóc cá nhân,350000,15
+61,Bộ dao nhà bếp 5 món,Đồ bếp,450000,20
+62,Chảo chống dính Sunhouse 28cm,Đồ bếp,400000,18
+63,Thớt gỗ tre 30cm,Đồ bếp,150000,25
+64,Nồi inox 3 đáy Elmich 20cm,Đồ bếp,550000,15
+65,Muỗng inox 6 cái,Đồ bếp,50000,50
+66,Bếp gas mini Namilux,Đồ bếp,350000,12
+67,Lò vi sóng Sharp 23L,Điện máy,2200000,8
+68,Camera an ninh Xiaomi,Điện tử,700000,20
+69,Router Wifi TP-Link,Điện tử,600000,18
+70,Ổ cắm điện 5 lỗ Điện Quang,Điện tử,120000,30
+71,Dây sạc iPhone Anker,Phụ kiện,250000,40
+72,Pin tiểu AA Panasonic 4 viên,Phụ kiện,50000,60
+73,Thẻ nhớ 64GB Kingston,Lưu trữ,350000,25
+74,Micro karaoke Bluetooth,Điện tử,500000,18
+75,Chuột gaming Razer DeathAdder,Điện tử,1500000,10
+76,Giấy in A4 Double A 500 tờ,Văn phòng phẩm,90000,30
+77,Bảng trắng văn phòng 1.2m,Văn phòng phẩm,700000,10
+78,Giá để hồ sơ 3 ngăn,Văn phòng phẩm,120000,20
+79,Kéo văn phòng Deli,Văn phòng phẩm,30000,40
+80,File còng 2 mặt A4,Văn phòng phẩm,40000,35
