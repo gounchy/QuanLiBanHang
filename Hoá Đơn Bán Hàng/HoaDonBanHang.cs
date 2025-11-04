@@ -199,6 +199,7 @@ namespace Hoá_Đơn_Bán_Hàng
                 if (dgv_HoaDon.CurrentRow.DataBoundItem is HoaDonChiTiet sp)
                 {
                     txt_MaHD.Text = sp.MaHD ?? "";
+                    txt_MaHD2.Text = sp.MaHD ?? "";
                     txt_MaNV.Text = sp.MaNV ?? "";
                     txt_MaKH.Text = sp.MaKhach ?? "";
                     txt_NgayBan.Text = sp.NgayLap.ToString("dd/MM/yyyy");

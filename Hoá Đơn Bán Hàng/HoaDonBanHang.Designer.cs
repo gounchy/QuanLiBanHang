@@ -58,13 +58,15 @@
             groupBox2 = new GroupBox();
             panel2 = new Panel();
             groupBox3 = new GroupBox();
+            txt_timhoadon = new TextBox();
+            label11 = new Label();
             label15 = new Label();
             label13 = new Label();
             txt_ThanhTien = new TextBox();
             txt_SoLuong = new TextBox();
             label10 = new Label();
             label14 = new Label();
-            txt_TimDon = new TextBox();
+            txt_MaHD2 = new TextBox();
             txt_DonGia = new TextBox();
             label9 = new Label();
             txt_MaHang = new TextBox();
@@ -82,8 +84,6 @@
             btn_DongDon = new Button();
             btn_InDon = new Button();
             btn_XoaDon = new Button();
-            label11 = new Label();
-            txt_timhoadon = new TextBox();
             panel1.SuspendLayout();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -387,7 +387,7 @@
             groupBox3.Controls.Add(txt_SoLuong);
             groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(label14);
-            groupBox3.Controls.Add(txt_TimDon);
+            groupBox3.Controls.Add(txt_MaHD2);
             groupBox3.Controls.Add(txt_DonGia);
             groupBox3.Controls.Add(label9);
             groupBox3.Controls.Add(txt_MaHang);
@@ -398,6 +398,23 @@
             groupBox3.Size = new Size(862, 173);
             groupBox3.TabIndex = 9;
             groupBox3.TabStop = false;
+            // 
+            // txt_timhoadon
+            // 
+            txt_timhoadon.Location = new Point(150, 24);
+            txt_timhoadon.Name = "txt_timhoadon";
+            txt_timhoadon.Size = new Size(247, 27);
+            txt_timhoadon.TabIndex = 10;
+            txt_timhoadon.TextChanged += txt_timhoadon_TextChanged;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(40, 27);
+            label11.Name = "label11";
+            label11.Size = new Size(98, 20);
+            label11.TabIndex = 9;
+            label11.Text = "Tìm Hóa Đơn";
             // 
             // label15
             // 
@@ -436,7 +453,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(31, 131);
+            label10.Location = new Point(34, 83);
             label10.Name = "label10";
             label10.Size = new Size(89, 20);
             label10.TabIndex = 0;
@@ -451,12 +468,13 @@
             label14.TabIndex = 0;
             label14.Text = "Đơn giá";
             // 
-            // txt_TimDon
+            // txt_MaHD2
             // 
-            txt_TimDon.Location = new Point(152, 124);
-            txt_TimDon.Name = "txt_TimDon";
-            txt_TimDon.Size = new Size(245, 27);
-            txt_TimDon.TabIndex = 1;
+            txt_MaHD2.Enabled = false;
+            txt_MaHD2.Location = new Point(152, 79);
+            txt_MaHD2.Name = "txt_MaHD2";
+            txt_MaHD2.Size = new Size(245, 27);
+            txt_MaHD2.TabIndex = 1;
             // 
             // txt_DonGia
             // 
@@ -469,7 +487,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(40, 79);
+            label9.Location = new Point(40, 128);
             label9.Name = "label9";
             label9.Size = new Size(67, 20);
             label9.TabIndex = 0;
@@ -478,7 +496,7 @@
             // txt_MaHang
             // 
             txt_MaHang.Enabled = false;
-            txt_MaHang.Location = new Point(155, 72);
+            txt_MaHang.Location = new Point(150, 125);
             txt_MaHang.Name = "txt_MaHang";
             txt_MaHang.Size = new Size(245, 27);
             txt_MaHang.TabIndex = 0;
@@ -617,23 +635,6 @@
             btn_XoaDon.UseVisualStyleBackColor = true;
             btn_XoaDon.Click += btn_XoaDon_Click;
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(40, 27);
-            label11.Name = "label11";
-            label11.Size = new Size(98, 20);
-            label11.TabIndex = 9;
-            label11.Text = "Tìm Hóa Đơn";
-            // 
-            // txt_timhoadon
-            // 
-            txt_timhoadon.Location = new Point(150, 24);
-            txt_timhoadon.Name = "txt_timhoadon";
-            txt_timhoadon.Size = new Size(247, 27);
-            txt_timhoadon.TabIndex = 10;
-            txt_timhoadon.TextChanged += txt_timhoadon_TextChanged;
-            // 
             // HoaDonBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -680,7 +681,7 @@
         private Label label1;
         private Panel panel2;
         private Label label10;
-        private TextBox txt_TimDon;
+        private TextBox txt_MaHD2;
         private Label label9;
         private TextBox txt_MaHang;
         private DataGridView dgv_HoaDon;
