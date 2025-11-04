@@ -172,16 +172,16 @@
             dtp_NgaySinh.Location = new Point(781, 118);
             dtp_NgaySinh.Margin = new Padding(3, 2, 3, 2);
             dtp_NgaySinh.Name = "dtp_NgaySinh";
-            dtp_NgaySinh.Size = new Size(303, 22);
+            dtp_NgaySinh.Size = new Size(303, 26);
             dtp_NgaySinh.TabIndex = 5;
             // 
             // chk_Nu
             // 
             chk_Nu.AutoSize = true;
-            chk_Nu.Location = new Point(223, 125);
+            chk_Nu.Location = new Point(291, 125);
             chk_Nu.Margin = new Padding(3, 2, 3, 2);
             chk_Nu.Name = "chk_Nu";
-            chk_Nu.Size = new Size(42, 19);
+            chk_Nu.Size = new Size(52, 23);
             chk_Nu.TabIndex = 3;
             chk_Nu.Text = "Nữ";
             chk_Nu.UseVisualStyleBackColor = true;
@@ -190,10 +190,10 @@
             // chk_Nam
             // 
             chk_Nam.AutoSize = true;
-            chk_Nam.Location = new Point(155, 124);
+            chk_Nam.Location = new Point(170, 125);
             chk_Nam.Margin = new Padding(3, 2, 3, 2);
             chk_Nam.Name = "chk_Nam";
-            chk_Nam.Size = new Size(50, 19);
+            chk_Nam.Size = new Size(63, 23);
             chk_Nam.TabIndex = 3;
             chk_Nam.Text = "Nam";
             chk_Nam.UseVisualStyleBackColor = true;
@@ -201,10 +201,10 @@
             // 
             // txt_ten
             // 
-            txt_ten.Location = new Point(155, 84);
+            txt_ten.Location = new Point(155, 85);
             txt_ten.Margin = new Padding(3, 2, 3, 2);
             txt_ten.Name = "txt_ten";
-            txt_ten.Size = new Size(284, 22);
+            txt_ten.Size = new Size(284, 26);
             txt_ten.TabIndex = 2;
             txt_ten.TextChanged += txt_ten_TextChanged;
             // 
@@ -213,7 +213,7 @@
             txt_sdt.Location = new Point(781, 82);
             txt_sdt.Margin = new Padding(3, 2, 3, 2);
             txt_sdt.Name = "txt_sdt";
-            txt_sdt.Size = new Size(303, 22);
+            txt_sdt.Size = new Size(303, 26);
             txt_sdt.TabIndex = 2;
             txt_sdt.TextChanged += txt_diachi_TextChanged;
             // 
@@ -222,16 +222,16 @@
             txt_diachi.Location = new Point(781, 42);
             txt_diachi.Margin = new Padding(3, 2, 3, 2);
             txt_diachi.Name = "txt_diachi";
-            txt_diachi.Size = new Size(303, 22);
+            txt_diachi.Size = new Size(303, 26);
             txt_diachi.TabIndex = 2;
             txt_diachi.TextChanged += txt_diachi_TextChanged;
             // 
             // txt_manv
             // 
-            txt_manv.Location = new Point(155, 49);
+            txt_manv.Location = new Point(155, 47);
             txt_manv.Margin = new Padding(3, 2, 3, 2);
             txt_manv.Name = "txt_manv";
-            txt_manv.Size = new Size(284, 22);
+            txt_manv.Size = new Size(284, 26);
             txt_manv.TabIndex = 2;
             txt_manv.TextChanged += txt_manv_TextChanged;
             // 
@@ -240,16 +240,16 @@
             label7.AutoSize = true;
             label7.Location = new Point(657, 125);
             label7.Name = "label7";
-            label7.Size = new Size(62, 15);
+            label7.Size = new Size(76, 19);
             label7.TabIndex = 1;
             label7.Text = "Ngày sinh";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(52, 125);
+            label4.Location = new Point(64, 125);
             label4.Name = "label4";
-            label4.Size = new Size(52, 15);
+            label4.Size = new Size(70, 19);
             label4.TabIndex = 1;
             label4.Text = "Giới tính";
             // 
@@ -258,16 +258,16 @@
             label6.AutoSize = true;
             label6.Location = new Point(657, 50);
             label6.Name = "label6";
-            label6.Size = new Size(44, 15);
+            label6.Size = new Size(58, 19);
             label6.TabIndex = 1;
             label6.Text = "Địa chỉ";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(50, 49);
+            label3.Location = new Point(47, 50);
             label3.Name = "label3";
-            label3.Size = new Size(81, 15);
+            label3.Size = new Size(98, 19);
             label3.TabIndex = 1;
             label3.Text = "Mã nhân viên";
             // 
@@ -276,16 +276,16 @@
             label5.AutoSize = true;
             label5.Location = new Point(657, 85);
             label5.Name = "label5";
-            label5.Size = new Size(62, 15);
+            label5.Size = new Size(80, 19);
             label5.TabIndex = 1;
             label5.Text = "Điện thoại";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(52, 84);
+            label2.Location = new Point(44, 92);
             label2.Name = "label2";
-            label2.Size = new Size(84, 15);
+            label2.Size = new Size(101, 19);
             label2.TabIndex = 1;
             label2.Text = "Tên nhân viên";
             // 
@@ -296,7 +296,7 @@
             label1.ForeColor = SystemColors.Highlight;
             label1.Location = new Point(445, 9);
             label1.Name = "label1";
-            label1.Size = new Size(256, 30);
+            label1.Size = new Size(326, 37);
             label1.TabIndex = 0;
             label1.Text = "DANH MỤC NHÂN VIÊN";
             // 
@@ -328,7 +328,7 @@
             Tennv.HeaderText = "Tên NV";
             Tennv.MinimumWidth = 6;
             Tennv.Name = "Tennv";
-            Tennv.Width = 70;
+            Tennv.Width = 90;
             // 
             // NgaySinh
             // 
@@ -364,7 +364,7 @@
             // 
             // DanhMucNhanVien
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1190, 582);
             Controls.Add(dgv_nhanvien);

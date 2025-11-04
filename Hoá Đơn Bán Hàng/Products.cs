@@ -16,6 +16,7 @@ namespace QuanLyBanHang
         public string Loai { get; set; }
         public decimal Gia { get; set; }
         public int soLuong { get; set; }
+        public decimal ThanhTien => Gia * soLuong;
 
         public Products()
         {

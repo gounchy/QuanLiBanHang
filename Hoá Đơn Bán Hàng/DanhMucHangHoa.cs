@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hoá_Đơn_Bán_Hàng;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Hoá_Đơn_Bán_Hàng.HoaDon;
 
 namespace QuanLyBanHang
 {
@@ -14,6 +16,7 @@ namespace QuanLyBanHang
     {
         private string productsFile = GlobalSettings.productsFile;
         private bool isEditing = false;
+        private string fileHoaDon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SanPham\HoaDon.csv");
 
         List<Products> proList = new List<Products>();
         public DanhMucHangHoa()
@@ -218,9 +221,10 @@ namespace QuanLyBanHang
             this.Close();
         }
 
+        
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem có chọn sản phẩm nào chưa
+
             if (dgv_HangHoa.CurrentRow == null)
             {
                 MessageBox.Show("Vui lòng chọn sản phẩm để thanh toán!");
@@ -253,7 +257,10 @@ namespace QuanLyBanHang
                 MessageBox.Show("Số lượng mua vượt quá tồn kho!");
                 return;
             }
-
+            int soHoaDon = 1;
+            if (File.Exists(fileHoaDon))
+                soHoaDon = File.ReadAllLines(fileHoaDon).Length; // tính dòng (có header)
+            string maHD = soHoaDon.ToString("D3");
             // Tính tổng tiền
             decimal tongTien = gia * soLuongMua;
 
@@ -264,6 +271,30 @@ namespace QuanLyBanHang
             // Cập nhật vào file
             Products pro = new Products();
             pro.UpdateQuantity(maHang, soLuongConLai);
+
+
+            var hoaDon = new HoaDon
+            {
+                MaHD = maHD,
+                MaNV = "01",
+                MaKhach = "KH001",
+                NgayLap = DateTime.Now
+            };
+
+            hoaDon.ChiTiet.Add(new HoaDonChiTiet
+            {
+                MaHD = maHD,
+                MaNV = hoaDon.MaNV,
+                MaKhach = hoaDon.MaKhach,
+                NgayLap = hoaDon.NgayLap,
+                MaHang = maHang,
+                TenHang = tenHang,
+                SoLuong = soLuongMua,
+                DonGia = gia
+            });
+
+            // Lưu vào file HoaDon.csv
+            hoaDon.SaveToFile(fileHoaDon);
 
             // Thông báo kết quả
             MessageBox.Show(

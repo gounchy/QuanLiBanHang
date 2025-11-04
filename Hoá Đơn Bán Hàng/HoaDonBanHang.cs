@@ -1,14 +1,6 @@
 ﻿using QuanLyBanHang;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static Hoá_Đơn_Bán_Hàng.HoaDon;
 
 namespace Hoá_Đơn_Bán_Hàng
@@ -18,11 +10,20 @@ namespace Hoá_Đơn_Bán_Hàng
         private List<NhanVien> nvList;
         private List<Khach> khList;
         private List<Products> spList;
-        private string fileHoaDon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HoaDon.xlsx");
-
+        private List<HoaDon.HoaDonChiTiet> danhSach = new List<HoaDon.HoaDonChiTiet>();
         public HoaDonBanHang()
         {
             InitializeComponent();
+            dgv_HoaDon.AutoGenerateColumns = false;
+            dgv_HoaDon.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // MÀU NỀN CÁCH DÒNG  
+            dgv_HoaDon.RowsDefaultCellStyle.BackColor = Color.White;
+            dgv_HoaDon.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
+
+
+            //chặn lỗi hiển thị DataError
+            //dgv_HoaDon.DataError += (s, e) => { e.ThrowException = false; };
         }
 
         private List<Khach> LoadKhachFromCSV(string filePath)
@@ -93,20 +94,24 @@ namespace Hoá_Đơn_Bán_Hàng
             return list;
         }
 
-        private void HienThiDonHang()
+
+        public void HienThiDonHang()
         {
-            var danhSach = HoaDon.LoadFromFile(fileHoaDon);
-            dgv_HoaDon.AutoGenerateColumns = false; // 🔒 Không cho tự tạo cột
+            string fileHoaDon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SanPham\HoaDon.csv");
+            danhSach = HoaDon.LoadFromFile(fileHoaDon);  // Gán vào biến toàn cục
+
+            dgv_HoaDon.DataSource = null;
             dgv_HoaDon.DataSource = danhSach;
+
         }
 
         private void HoaDonBanHang_Load(object sender, EventArgs e)
         {
-            HienThiDonHang();
-
             nvList = new NhanVien().GetList();
             spList = new Products().GetList();
             khList = LoadKhachHang();
+            HienThiDonHang();
+
 
             cb_TenNV.DataSource = nvList;
             cb_TenNV.DisplayMember = "TenNV";
@@ -116,21 +121,9 @@ namespace Hoá_Đơn_Bán_Hàng
             cb_TenKH.DisplayMember = "TenKhach";
             cb_TenKH.ValueMember = "MaKhach";
 
-            // ✅ Quan trọng: Tắt auto-generate cột
-            dgv_HoaDon.AutoGenerateColumns = false;
 
-            // ✅ Nếu chưa có cột thì thêm thủ công
-            if (dgv_HoaDon.Columns.Count == 0)
-            {
-                dgv_HoaDon.Columns.Add("MaHang", "Mã hàng");
-                dgv_HoaDon.Columns.Add("TenHang", "Tên hàng");
-                dgv_HoaDon.Columns.Add("DonGia", "Đơn giá");
-                dgv_HoaDon.Columns.Add("SoLuong", "Số lượng");
-                dgv_HoaDon.Columns.Add("ThanhTien", "Thành tiền");
-            }
 
-            // ✅ Gán datasource sau khi tắt auto-generate
-            dgv_HoaDon.DataSource = spList;
+            txt_MaHD.ReadOnly = true;
         }
 
         private void thêmNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
@@ -185,52 +178,133 @@ namespace Hoá_Đơn_Bán_Hàng
 
         private void btn_InDon_Click(object sender, EventArgs e)
         {
-            // TODO: In hóa đơn
-        }
+            HienThiDonHang();
 
-        private void btn_ThanhToan_Click(object sender, EventArgs e)
-        {
-            var selectedProducts = spList.Where(p => p.soLuong > 0).ToList();
-            if (selectedProducts.Count == 0)
-            {
-                MessageBox.Show("Vui lòng chọn sản phẩm để thanh toán!");
-                return;
-            }
-
-            var nv = (NhanVien)cb_TenNV.SelectedItem;
-            var kh = (Khach)cb_TenKH.SelectedItem;
-
-            string maHD = "HD" + DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            var hoaDon = new HoaDon
-            {
-                MaHD = maHD,
-                MaNV = nv.MaNV,
-                MaKhach = kh.MaKhach,
-                NgayLap = DateTime.Now
-            };
-
-            foreach (var sp in selectedProducts)
-            {
-                hoaDon.ChiTiet.Add(new HoaDonChiTiet
-                {
-                    MaHD = maHD,
-                    MaHang = sp.maHang,
-                    TenHang = sp.tenHang,
-                    SoLuong = sp.soLuong,
-                    DonGia = sp.Gia
-                });
-            }
-
-            hoaDon.SaveToFile(fileHoaDon);
-
-            MessageBox.Show($"Đã tạo hóa đơn {maHD}\nTổng tiền: {hoaDon.TongTien:N0} VNĐ",
-                "Thanh toán thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Đã cập nhật danh sách hóa đơn mới nhất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btn_DongDon_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgv_HoaDon_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgv_HoaDon.CurrentRow == null ||
+                    dgv_HoaDon.CurrentRow.DataBoundItem == null)
+                    return;
+
+                if (dgv_HoaDon.CurrentRow.DataBoundItem is HoaDonChiTiet sp)
+                {
+                    txt_MaHD.Text = sp.MaHD ?? "";
+                    txt_MaNV.Text = sp.MaNV ?? "";
+                    txt_MaKH.Text = sp.MaKhach ?? "";
+                    txt_NgayBan.Text = sp.NgayLap.ToString("dd/MM/yyyy");
+                    txt_MaHang.Text = sp.MaHang ?? "";
+                    txt_SoLuong.Text = sp.SoLuong.ToString();
+                    txt_DonGia.Text = sp.DonGia.ToString("N0");
+                    txt_ThanhTien.Text = (sp.DonGia * sp.SoLuong).ToString("N0");
+
+                    if (cb_TenNV.DataSource != null)
+                    {
+                        cb_TenNV.SelectedValue = sp.MaNV;
+                    }
+
+                    if (cb_TenKH.DataSource != null)
+                    {
+                        cb_TenKH.SelectedValue = sp.MaKhach;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Bỏ qua lỗi khi DataGridView đang trong quá trình cập nhật
+            }
+        }
+
+        private void btn_XoaDon_Click(object sender, EventArgs e)
+        {
+            if (dgv_HoaDon.CurrentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            HoaDon.HoaDonChiTiet xoahoadon = dgv_HoaDon.CurrentRow.DataBoundItem as HoaDon.HoaDonChiTiet;
+            if (xoahoadon == null) return;
+
+            DialogResult result = MessageBox.Show(
+                $"Bạn có chắc muốn xóa sản phẩm '{xoahoadon.TenHang}' trong hóa đơn {xoahoadon.MaHD} không?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                // TẮT EVENT TRƯỚC KHI CẬP NHẬT
+                dgv_HoaDon.SelectionChanged -= dgv_HoaDon_SelectionChanged;
+
+                try
+                {
+                    danhSach.Remove(xoahoadon);
+
+                    string fileHoaDon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SanPham\HoaDon.csv");
+                    using (StreamWriter sw = new StreamWriter(fileHoaDon, false, Encoding.UTF8))
+                    {
+                        sw.WriteLine("MaHD,MaNV,MaKH,NgayLap,MaHang,TenHang,SoLuong,DonGia,ThanhTien");
+                        foreach (var ct in danhSach)
+                        {
+                            sw.WriteLine($"{ct.MaHD},{ct.MaNV},{ct.MaKhach},{ct.NgayLap:yyyy-MM-dd},{ct.MaHang},{ct.TenHang},{ct.SoLuong},{ct.DonGia},{ct.ThanhTien}");
+                        }
+                    }
+
+                    dgv_HoaDon.DataSource = null;
+                    dgv_HoaDon.DataSource = danhSach;
+
+                    MessageBox.Show("Đã xóa dòng sản phẩm khỏi hóa đơn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                finally
+                {
+                    // BẬT LẠI EVENT SAU KHI HOÀN TẤT
+                    dgv_HoaDon.SelectionChanged += dgv_HoaDon_SelectionChanged;
+                }
+            }
+        }
+
+        private void txt_timhoadon_TextChanged(object sender, EventArgs e)
+        {
+            string filterText = txt_timhoadon.Text.Trim().ToLower();
+
+            dgv_HoaDon.SelectionChanged -= dgv_HoaDon_SelectionChanged;
+
+            if (string.IsNullOrEmpty(filterText))
+            {
+                dgv_HoaDon.DataSource = null;
+                dgv_HoaDon.DataSource = danhSach;
+            }
+            else
+            {
+                var filtered = danhSach.Where(hd =>
+                    (hd.MaHD?.ToLower().Contains(filterText) ?? false) ||
+                    (hd.MaNV?.ToLower().Contains(filterText) ?? false) ||
+                    (hd.MaKhach?.ToLower().Contains(filterText) ?? false) ||
+                    (hd.MaHang?.ToLower().Contains(filterText) ?? false) ||
+                    (hd.TenHang?.ToLower().Contains(filterText) ?? false) ||
+                    hd.SoLuong.ToString().Contains(filterText) ||
+                    hd.DonGia.ToString().Contains(filterText) ||
+                    hd.ThanhTien.ToString().Contains(filterText) ||
+                    hd.NgayLap.ToString("dd/MM/yyyy").Contains(filterText)
+                ).ToList();
+
+                dgv_HoaDon.DataSource = null;
+                dgv_HoaDon.DataSource = filtered;
+            }
+
+            dgv_HoaDon.Refresh();
+            dgv_HoaDon.SelectionChanged += dgv_HoaDon_SelectionChanged;
         }
     }
 }

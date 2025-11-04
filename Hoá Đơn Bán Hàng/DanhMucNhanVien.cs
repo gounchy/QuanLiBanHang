@@ -40,37 +40,37 @@ namespace QuanLyBanHang
 
         private void txt_manv_TextChanged(object sender, EventArgs e)
         {
-            ApplyFilters();
+            LocDuLieu();
         }
 
         private void txt_diachi_TextChanged(object sender, EventArgs e)
         {
-            ApplyFilters();
+            LocDuLieu();
         }
 
         private void txt_ten_TextChanged(object sender, EventArgs e)
         {
-            ApplyFilters();
+            LocDuLieu();
         }
 
         private void txt_sdt_TextChanged(object sender, EventArgs e)
         {
-            ApplyFilters();
+            LocDuLieu();
         }
 
         private void chk_Nam_CheckedChanged(object sender, EventArgs e)
         {
             if (chk_Nam.Checked && chk_Nu.Checked) chk_Nu.Checked = false;
-            ApplyFilters();
+            LocDuLieu();
         }
 
         private void chk_Nu_CheckedChanged(object sender, EventArgs e)
         {
             if (chk_Nu.Checked && chk_Nam.Checked) chk_Nam.Checked = false;
-            ApplyFilters();
+            LocDuLieu();
         }
 
-        private void ApplyFilters()
+        private void LocDuLieu()
         {
             List<NhanVien> result = nhanvienList;
 
@@ -193,7 +193,7 @@ namespace QuanLyBanHang
             // Refresh lưới và chọn dòng vừa thêm
             capnhap(maNv);
             MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ClearInputs();
+            Clear();
             isModified = true;
         }
 
@@ -216,7 +216,7 @@ namespace QuanLyBanHang
             }
         }
 
-        private void ClearInputs()
+        private void Clear()
         {
             txt_manv.Text = "";
             txt_ten.Text = "";
@@ -292,7 +292,7 @@ namespace QuanLyBanHang
                 originalNV = null;
 
                 MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearInputs();
+                Clear();
                 return;
             }
 
@@ -328,7 +328,7 @@ namespace QuanLyBanHang
             }
 
             // Xóa hết các input trên form
-            ClearInputs();
+            Clear();
 
         }
 
@@ -337,7 +337,7 @@ namespace QuanLyBanHang
             NhanVien nvLoader = new NhanVien();
             nhanvienList = nvLoader.GetList();
 
-            ApplyFilters();
+            LocDuLieu();
         }
 
         private void DanhMucNhanVien_FormClosing(object sender, FormClosingEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using QuanLyBanHang;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,10 @@ namespace Hoá_Đơn_Bán_Hàng
 
         public class HoaDonChiTiet
         {
-            public string MaHD { get; set; }        
+            public string MaHD { get; set; }
+            public string MaNV { get; set; }
+            public string MaKhach { get; set; }
+            public DateTime NgayLap { get; set; }
             public string MaHang { get; set; }     
             public string TenHang { get; set; }
             public int SoLuong { get; set; }
@@ -65,15 +69,20 @@ namespace Hoá_Đơn_Bán_Hàng
         public void SaveToFile(string filePath)
         {
             bool fileTonTai = File.Exists(filePath);
-            using (StreamWriter sw = new StreamWriter(filePath, true))
+            using (StreamWriter sw = new StreamWriter(filePath, true , Encoding.UTF8))
             {
                 if (!fileTonTai)
-                    sw.WriteLine("MaHD,MaNV,MaKhach,NgayLap,MaHang,TenHang,SoLuong,DonGia,ThanhTien");
+                    sw.WriteLine("MaHD,MaNV,MaKH,NgayLap,MaHang,TenHang,SoLuong,DonGia,ThanhTien");
 
                 foreach (var ct in ChiTiet)
                 {
                     sw.WriteLine($"{MaHD},{MaNV},{MaKhach},{NgayLap:yyyy-MM-dd},{ct.MaHang},{ct.TenHang},{ct.SoLuong},{ct.DonGia},{ct.ThanhTien}");
                 }
+                //foreach (var ct in ChiTiet)
+                //{
+                //    decimal thanhTien = ct.SoLuong * ct.DonGia;
+                //    sw.WriteLine($"{MaHD},{ct.MaHang},{ct.TenHang},{ct.SoLuong},{ct.DonGia},{thanhTien}");
+                //}
             }
         }
 
@@ -83,21 +92,32 @@ namespace Hoá_Đơn_Bán_Hàng
             var list = new List<HoaDonChiTiet>();
             if (!File.Exists(filePath)) return list;
 
-            var lines = File.ReadAllLines(filePath).Skip(1);
+            var lines = File.ReadAllLines(filePath , Encoding.UTF8).Skip(1);
             foreach (var line in lines)
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
                 var parts = line.Split(',');
                 if (parts.Length < 9) continue;
 
-                list.Add(new HoaDonChiTiet
+                try
                 {
-                    MaHD = parts[0],
-                    MaHang = parts[4],
-                    TenHang = parts[5],
-                    SoLuong = int.Parse(parts[6]),
-                    DonGia = decimal.Parse(parts[7])
-                });
+                    list.Add(new HoaDonChiTiet
+                    {
+                        MaHD = parts[0],
+                        MaNV = parts[1],
+                        MaKhach = parts[2],
+                        NgayLap = DateTime.TryParse(parts[3], out var date) ? date : DateTime.MinValue,
+                        MaHang = parts[4],
+                        TenHang = parts[5],
+                        SoLuong = int.Parse(parts[6]),
+                        DonGia = decimal.Parse(parts[7], System.Globalization.CultureInfo.InvariantCulture)
+
+                    });
+                }
+                catch
+                {
+                    continue;
+                }
             }
 
             return list;
