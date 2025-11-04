@@ -1,4 +1,5 @@
 ﻿using Hoá_Đơn_Bán_Hàng;
+using QuanLyBanHang;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,7 @@ namespace QuanLyBanHang
 {
     public partial class KhachHang : Form
     {
-        private string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SanPham", "khachhang.csv");
+        private string filePath = GlobalSettings.khachhangFile;
         private List<Khach> danhSachKhach = new List<Khach>();
         private bool isAdding = false;
 

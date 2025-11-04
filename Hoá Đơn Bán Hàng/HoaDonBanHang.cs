@@ -68,7 +68,7 @@ namespace Hoá_Đơn_Bán_Hàng
             cb_TenNV.ValueMember = "MaNV";
             cb_TenNV.SelectedIndex = -1;
 
-            string fileKhach = @"SanPham\khachhang.csv";
+            string fileKhach = GlobalSettings.khachhangFile;
             khList = LoadKhachFromCSV(fileKhach);
             cb_TenKH.DataSource = khList;
             cb_TenKH.DisplayMember = "TenKhach";
@@ -78,7 +78,7 @@ namespace Hoá_Đơn_Bán_Hàng
 
         private List<Khach> LoadKhachHang()
         {
-            string file = @"SanPham\khachhang.csv";
+            string file = GlobalSettings.khachhangFile;
             List<Khach> list = new List<Khach>();
 
             if (!File.Exists(file)) return list;
@@ -97,7 +97,7 @@ namespace Hoá_Đơn_Bán_Hàng
 
         public void HienThiDonHang()
         {
-            string fileHoaDon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SanPham\HoaDon.csv");
+            string fileHoaDon = GlobalSettings.hoadonFile;
             danhSach = HoaDon.LoadFromFile(fileHoaDon);  // Gán vào biến toàn cục
 
             dgv_HoaDon.DataSource = null;
@@ -252,7 +252,7 @@ namespace Hoá_Đơn_Bán_Hàng
                 {
                     danhSach.Remove(xoahoadon);
 
-                    string fileHoaDon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SanPham\HoaDon.csv");
+                    string fileHoaDon = GlobalSettings.hoadonFile;
                     using (StreamWriter sw = new StreamWriter(fileHoaDon, false, Encoding.UTF8))
                     {
                         sw.WriteLine("MaHD,MaNV,MaKH,NgayLap,MaHang,TenHang,SoLuong,DonGia,ThanhTien");

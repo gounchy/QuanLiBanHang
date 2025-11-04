@@ -302,7 +302,7 @@ namespace QuanLyBanHang
                 MessageBox.Show("Không có thay đổi nào để lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            string filePath = @"SanPham\NhanVien.csv";
+            string filePath = GlobalSettings.nhanvienFile;
             NhanVien.SaveList(nhanvienList, filePath);
             isModified = false;
 
@@ -358,7 +358,7 @@ namespace QuanLyBanHang
                 }
                 if (result == DialogResult.Yes)
                 {
-                    string filePath = @"SanPham\NhanVien.csv";
+                    string filePath = GlobalSettings.nhanvienFile;  
                     NhanVien.SaveList(nhanvienList, filePath);
                     isModified = false;
                     MessageBox.Show("Đã lưu thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

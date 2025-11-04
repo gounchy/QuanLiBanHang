@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btn_ThanhToan = new Button();
             btn_Dong = new Button();
@@ -58,8 +58,11 @@
             Loai = new DataGridViewTextBoxColumn();
             Gia = new DataGridViewTextBoxColumn();
             SoLuong = new DataGridViewTextBoxColumn();
+            cb_TenNV = new ComboBox();
+            label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_HangHoa).BeginInit();
             SuspendLayout();
             // 
@@ -172,7 +175,7 @@
             txt_SoLuong.Location = new Point(526, 130);
             txt_SoLuong.Margin = new Padding(3, 2, 3, 2);
             txt_SoLuong.Name = "txt_SoLuong";
-            txt_SoLuong.Size = new Size(210, 22);
+            txt_SoLuong.Size = new Size(210, 26);
             txt_SoLuong.TabIndex = 4;
             // 
             // txt_Gia
@@ -180,7 +183,7 @@
             txt_Gia.Location = new Point(526, 101);
             txt_Gia.Margin = new Padding(3, 2, 3, 2);
             txt_Gia.Name = "txt_Gia";
-            txt_Gia.Size = new Size(210, 22);
+            txt_Gia.Size = new Size(210, 26);
             txt_Gia.TabIndex = 1;
             // 
             // txt_Loai
@@ -188,7 +191,7 @@
             txt_Loai.Location = new Point(526, 74);
             txt_Loai.Margin = new Padding(3, 2, 3, 2);
             txt_Loai.Name = "txt_Loai";
-            txt_Loai.Size = new Size(210, 22);
+            txt_Loai.Size = new Size(210, 26);
             txt_Loai.TabIndex = 1;
             // 
             // txt_TenHang
@@ -196,7 +199,7 @@
             txt_TenHang.Location = new Point(182, 129);
             txt_TenHang.Margin = new Padding(3, 2, 3, 2);
             txt_TenHang.Name = "txt_TenHang";
-            txt_TenHang.Size = new Size(206, 22);
+            txt_TenHang.Size = new Size(206, 26);
             txt_TenHang.TabIndex = 1;
             // 
             // label4
@@ -204,7 +207,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(417, 132);
             label4.Name = "label4";
-            label4.Size = new Size(55, 15);
+            label4.Size = new Size(70, 19);
             label4.TabIndex = 0;
             label4.Text = "Số lượng";
             // 
@@ -213,7 +216,7 @@
             txt_Filter.Location = new Point(182, 76);
             txt_Filter.Margin = new Padding(3, 2, 3, 2);
             txt_Filter.Name = "txt_Filter";
-            txt_Filter.Size = new Size(206, 22);
+            txt_Filter.Size = new Size(206, 26);
             txt_Filter.TabIndex = 1;
             txt_Filter.TextChanged += txt_Filter_TextChanged;
             // 
@@ -222,7 +225,7 @@
             txt_MaHang.Location = new Point(182, 101);
             txt_MaHang.Margin = new Padding(3, 2, 3, 2);
             txt_MaHang.Name = "txt_MaHang";
-            txt_MaHang.Size = new Size(206, 22);
+            txt_MaHang.Size = new Size(206, 26);
             txt_MaHang.TabIndex = 1;
             // 
             // label7
@@ -230,7 +233,7 @@
             label7.AutoSize = true;
             label7.Location = new Point(417, 104);
             label7.Name = "label7";
-            label7.Size = new Size(72, 15);
+            label7.Size = new Size(89, 19);
             label7.TabIndex = 0;
             label7.Text = "Đơn giá bán";
             // 
@@ -239,7 +242,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(417, 77);
             label5.Name = "label5";
-            label5.Size = new Size(30, 15);
+            label5.Size = new Size(40, 19);
             label5.TabIndex = 0;
             label5.Text = "Loại";
             // 
@@ -248,7 +251,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(74, 76);
             label6.Name = "label6";
-            label6.Size = new Size(81, 15);
+            label6.Size = new Size(102, 19);
             label6.TabIndex = 0;
             label6.Text = "Tìm sản phẩm";
             // 
@@ -257,7 +260,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(74, 132);
             label3.Name = "label3";
-            label3.Size = new Size(58, 15);
+            label3.Size = new Size(69, 19);
             label3.TabIndex = 0;
             label3.Text = "Tên hàng";
             // 
@@ -266,7 +269,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(74, 101);
             label2.Name = "label2";
-            label2.Size = new Size(55, 15);
+            label2.Size = new Size(66, 19);
             label2.TabIndex = 0;
             label2.Text = "Mã hàng";
             // 
@@ -277,12 +280,14 @@
             label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(417, 15);
             label1.Name = "label1";
-            label1.Size = new Size(169, 19);
+            label1.Size = new Size(203, 23);
             label1.TabIndex = 0;
             label1.Text = "DANH MỤC HÀNG HOÁ";
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cb_TenNV);
+            groupBox1.Controls.Add(label8);
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.LightSalmon;
             groupBox1.Location = new Point(10, 36);
@@ -314,6 +319,7 @@
             // 
             MaHang.DataPropertyName = "maHang";
             MaHang.HeaderText = "Mã Hàng";
+            MaHang.MinimumWidth = 6;
             MaHang.Name = "MaHang";
             MaHang.ReadOnly = true;
             MaHang.Width = 120;
@@ -322,6 +328,7 @@
             // 
             TenHang.DataPropertyName = "tenHang";
             TenHang.HeaderText = "Tên Hàng";
+            TenHang.MinimumWidth = 6;
             TenHang.Name = "TenHang";
             TenHang.ReadOnly = true;
             TenHang.Width = 250;
@@ -330,6 +337,7 @@
             // 
             Loai.DataPropertyName = "Loai";
             Loai.HeaderText = "Loại";
+            Loai.MinimumWidth = 6;
             Loai.Name = "Loai";
             Loai.ReadOnly = true;
             Loai.Width = 200;
@@ -337,9 +345,10 @@
             // Gia
             // 
             Gia.DataPropertyName = "Gia";
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.BottomRight;
-            Gia.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.BottomRight;
+            Gia.DefaultCellStyle = dataGridViewCellStyle3;
             Gia.HeaderText = "Giá";
+            Gia.MinimumWidth = 6;
             Gia.Name = "Gia";
             Gia.ReadOnly = true;
             Gia.Width = 300;
@@ -347,16 +356,37 @@
             // SoLuong
             // 
             SoLuong.DataPropertyName = "soLuong";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            SoLuong.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            SoLuong.DefaultCellStyle = dataGridViewCellStyle4;
             SoLuong.HeaderText = "Số Lượng";
+            SoLuong.MinimumWidth = 6;
             SoLuong.Name = "SoLuong";
             SoLuong.ReadOnly = true;
             SoLuong.Width = 120;
             // 
+            // cb_TenNV
+            // 
+            cb_TenNV.FormattingEnabled = true;
+            cb_TenNV.Location = new Point(172, 122);
+            cb_TenNV.Name = "cb_TenNV";
+            cb_TenNV.Size = new Size(206, 31);
+            cb_TenNV.TabIndex = 12;
+            cb_TenNV.SelectedIndexChanged += cb_TenNV_SelectedIndexChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Black;
+            label8.Location = new Point(49, 132);
+            label8.Name = "label8";
+            label8.Size = new Size(99, 20);
+            label8.TabIndex = 11;
+            label8.Text = "Tên nhân viên";
+            // 
             // DanhMucHangHoa
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1029, 568);
             Controls.Add(dgv_HangHoa);
@@ -370,6 +400,8 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_HangHoa).EndInit();
             ResumeLayout(false);
         }
@@ -406,5 +438,7 @@
         private DataGridViewTextBoxColumn Loai;
         private DataGridViewTextBoxColumn Gia;
         private DataGridViewTextBoxColumn SoLuong;
+        private ComboBox cb_TenNV;
+        private Label label8;
     }
 }

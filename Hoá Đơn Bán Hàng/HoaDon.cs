@@ -76,7 +76,7 @@ namespace Hoá_Đơn_Bán_Hàng
 
                 foreach (var ct in ChiTiet)
                 {
-                    sw.WriteLine($"{MaHD},{MaNV},{MaKhach},{NgayLap:yyyy-MM-dd},{ct.MaHang},{ct.TenHang},{ct.SoLuong},{ct.DonGia},{ct.ThanhTien}");
+                    sw.WriteLine($"{ct.MaHD},{ct.MaNV},{ct.MaKhach},{ct.NgayLap:yyyy-MM-dd},{ct.MaHang},{ct.TenHang},{ct.SoLuong},{ct.DonGia},{ct.ThanhTien}");
                 }
                 //foreach (var ct in ChiTiet)
                 //{

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyBanHang;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -49,11 +50,11 @@ namespace Hoá_Đơn_Bán_Hàng
             }
         }
 
-        public List<NhanVien> GetList()
+        public List<NhanVien> GetList(string fileName = "")
         {
             List<NhanVien> nvlist = new List<NhanVien>();
-            string fileName = @"SanPham\NhanVien.csv";
-            ;
+            fileName = (fileName == "") ? GlobalSettings.nhanvienFile : fileName;
+            
 
             using (StreamReader reader = new StreamReader(fileName))
             {

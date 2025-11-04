@@ -1,5 +1,6 @@
 ﻿using Hoá_Đơn_Bán_Hàng;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,13 @@ using static Hoá_Đơn_Bán_Hàng.HoaDon;
 
 namespace QuanLyBanHang
 {
+
     public partial class DanhMucHangHoa : Form
     {
+        private List<NhanVien> nvList;
         private string productsFile = GlobalSettings.productsFile;
         private bool isEditing = false;
-        private string fileHoaDon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SanPham\HoaDon.csv");
+        private string fileHoaDon = GlobalSettings.hoadonFile;
 
         List<Products> proList = new List<Products>();
         public DanhMucHangHoa()
@@ -61,6 +64,11 @@ namespace QuanLyBanHang
             Products pro = new Products();
             proList = pro.GetList();
             dgv_HangHoa.DataSource = proList;
+
+            nvList = new NhanVien().GetList();
+            cb_TenNV.DataSource = nvList;
+            cb_TenNV.DisplayMember = "TenNV";
+            cb_TenNV.ValueMember = "MaNV";
         }
 
         private void txt_Filter_TextChanged(object sender, EventArgs e)
@@ -221,7 +229,7 @@ namespace QuanLyBanHang
             this.Close();
         }
 
-        
+
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
 
@@ -276,7 +284,7 @@ namespace QuanLyBanHang
             var hoaDon = new HoaDon
             {
                 MaHD = maHD,
-                MaNV = "01",
+                MaNV = cb_TenNV.SelectedValue.ToString(),
                 MaKhach = "KH001",
                 NgayLap = DateTime.Now
             };
@@ -310,7 +318,31 @@ namespace QuanLyBanHang
 
             // Cập nhật lại bảng
             //LoadProducts();
-            
+
+        }
+        private void LoadData()
+        {
+            NhanVien nv = new NhanVien();
+            nvList = nv.GetList();
+            cb_TenNV.DataSource = nvList;
+            cb_TenNV.DisplayMember = "TenNV";
+            cb_TenNV.ValueMember = "MaNV";
+            cb_TenNV.SelectedIndex = -1;
+
+            //string fileKhach = @"SanPham\khachhang.csv";
+            //khList = LoadKhachFromCSV(fileKhach);
+            //cb_TenKH.DataSource = khList;
+            //cb_TenKH.DisplayMember = "TenKhach";
+            //cb_TenKH.ValueMember = "MaKhach";
+            //cb_TenKH.SelectedIndex = -1;
+        }
+        private void cb_TenNV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_TenNV.SelectedIndex >= 0)
+            {
+                var nv = (NhanVien)cb_TenNV.SelectedItem;
+                
+            }
         }
     }
 }
