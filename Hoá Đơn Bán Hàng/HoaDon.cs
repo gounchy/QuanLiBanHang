@@ -10,34 +10,6 @@ namespace Hoá_Đơn_Bán_Hàng
 {
     public class HoaDon
     {
-        //public string MaHD { get; set; }
-        //public NhanVien NhanVienBan { get; set; }
-        //public Khach KhachMua { get; set; }
-        //public List<Products> DanhSachHang { get; set; }
-        //public DateTime NgayLap { get; set; }
-
-        //public decimal TongTien => DanhSachHang.Sum(p => p.TinhTien());
-
-        //public HoaDon()
-        //{
-        //    DanhSachHang = new List<Products>();
-        //    NgayLap = DateTime.Now;
-        //}
-
-        //public HoaDon(string maHD, NhanVien nv, Khach kh, List<Products> danhSach)
-        //{
-        //    MaHD = maHD;
-        //    NhanVienBan = nv;
-        //    KhachMua = kh;
-        //    DanhSachHang = danhSach;
-        //    NgayLap = DateTime.Now;
-        //}
-
-        //public override string ToString()
-        //{
-        //    return $"{MaHD} - {NhanVienBan.TenNV} - {KhachMua.TenKhach} - {TongTien:N0} VNĐ";
-        //}
-
         public class HoaDonChiTiet
         {
             public string MaHD { get; set; }
@@ -78,11 +50,6 @@ namespace Hoá_Đơn_Bán_Hàng
                 {
                     sw.WriteLine($"{ct.MaHD},{ct.MaNV},{ct.MaKhach},{ct.NgayLap:yyyy-MM-dd},{ct.MaHang},{ct.TenHang},{ct.SoLuong},{ct.DonGia},{ct.ThanhTien}");
                 }
-                //foreach (var ct in ChiTiet)
-                //{
-                //    decimal thanhTien = ct.SoLuong * ct.DonGia;
-                //    sw.WriteLine($"{MaHD},{ct.MaHang},{ct.TenHang},{ct.SoLuong},{ct.DonGia},{thanhTien}");
-                //}
             }
         }
 

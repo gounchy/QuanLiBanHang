@@ -126,31 +126,47 @@ namespace QuanLyBanHang
             }
         }
 
+        private void capnhap(string maNvToSelect)
+        {
+            dgv_nhanvien.DataSource = null;
+            dgv_nhanvien.DataSource = nhanvienList;
+            dgv_nhanvien.Refresh();
+            if (!string.IsNullOrEmpty(maNvToSelect))
+            {
+                foreach (DataGridViewRow row in dgv_nhanvien.Rows)
+                {
+                    if (row.DataBoundItem is NhanVien nv && string.Equals(nv.MaNV, maNvToSelect, StringComparison.OrdinalIgnoreCase))
+                    {
+                        row.Selected = true;
+                        dgv_nhanvien.CurrentCell = row.Cells[0];
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void Clear()
+        {
+            txt_manv.Text = "";
+            txt_ten.Text = "";
+            txt_diachi.Text = "";
+            txt_sdt.Text = "";
+            dtp_NgaySinh.Value = DateTime.Today;
+            chk_Nam.Checked = false;
+            chk_Nu.Checked = false;
+
+            btn_themnv.Enabled = true;
+            btn_sua.Enabled = true;
+            btn_xoa.Enabled = true;
+        }
         private void btn_themnv_Click(object sender, EventArgs e)
         {
-            // Validate bắt buộc
-            if (string.IsNullOrWhiteSpace(txt_manv.Text))
+            if (string.IsNullOrEmpty(txt_manv.Text.Trim()) ||
+                    string.IsNullOrWhiteSpace(txt_ten.Text) ||
+                    string.IsNullOrWhiteSpace(txt_sdt.Text) ||
+                    string.IsNullOrWhiteSpace(txt_diachi.Text))
             {
-                MessageBox.Show("Vui lòng nhập Mã NV!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txt_manv.Focus();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txt_ten.Text))
-            {
-                MessageBox.Show("Vui lòng nhập Tên Nhân Viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txt_ten.Focus();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txt_sdt.Text))
-            {
-                MessageBox.Show("Vui lòng nhập Điện thoại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txt_sdt.Focus();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txt_diachi.Text))
-            {
-                MessageBox.Show("Vui lòng nhập Địa chỉ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txt_diachi.Focus();
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -195,38 +211,11 @@ namespace QuanLyBanHang
             MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Clear();
             isModified = true;
-        }
 
-        private void capnhap(string maNvToSelect)
-        {
-            dgv_nhanvien.DataSource = null;
-            dgv_nhanvien.DataSource = nhanvienList;
-            dgv_nhanvien.Refresh();
-            if (!string.IsNullOrEmpty(maNvToSelect))
-            {
-                foreach (DataGridViewRow row in dgv_nhanvien.Rows)
-                {
-                    if (row.DataBoundItem is NhanVien nv && string.Equals(nv.MaNV, maNvToSelect, StringComparison.OrdinalIgnoreCase))
-                    {
-                        row.Selected = true;
-                        dgv_nhanvien.CurrentCell = row.Cells[0];
-                        break;
-                    }
-                }
-            }
+            string filePath = GlobalSettings.nhanvienFile;
+            NhanVien.SaveList(nhanvienList, filePath);
+            isModified = false;
         }
-
-        private void Clear()
-        {
-            txt_manv.Text = "";
-            txt_ten.Text = "";
-            txt_diachi.Text = "";
-            txt_sdt.Text = "";
-            dtp_NgaySinh.Value = DateTime.Today;
-            chk_Nam.Checked = false;
-            chk_Nu.Checked = false;
-        }
-
         private void btn_xoa_Click(object sender, EventArgs e)
         {
             if (dgv_nhanvien.CurrentRow == null)
@@ -243,15 +232,48 @@ namespace QuanLyBanHang
                 // Xóa khỏi danh sách
                 nhanvienList.Remove(xoanhanvien);
 
+                //Lưu
+                string filePath = GlobalSettings.nhanvienFile;
+                NhanVien.SaveList(nhanvienList, filePath);
+
                 // Cập nhật DataGridView
                 capnhap(null);
 
+                isModified = false;
                 MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                isModified = true;
+ 
+            }
+        }
+        private void btn_sua_Click(object sender, EventArgs e)
+        {
+            txt_manv.Enabled = false; // Khóa Mã NV khi sửa
+
+            btn_themnv.Enabled = false;
+            btn_xoa.Enabled = false;
+            btn_sua.Enabled = false;
+
+            if (dgv_nhanvien.CurrentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-        }
+            // Lấy object NhanVien từ dòng đang chọn
+            if (dgv_nhanvien.CurrentRow.DataBoundItem is NhanVien nv)
+            {
+                txt_manv.Text = nv.MaNV; // get-only
+                txt_ten.Text = nv.TenNV;
+                txt_diachi.Text = nv.DiaChi;
+                txt_sdt.Text = nv.DienThoai;
+                dtp_NgaySinh.Value = nv.NgaySinh == default ? DateTime.Today : nv.NgaySinh;
+                chk_Nam.Checked = nv.GioiTinh;
+                chk_Nu.Checked = !nv.GioiTinh;
 
+                //Lưu reference đến nhân viên đang sửa
+                isEditing = true;
+                originalNV = nv;
+            }
+        }
         private void btn_luu_Click(object sender, EventArgs e)
         {
             if (isEditing && originalNV != null)
@@ -293,9 +315,7 @@ namespace QuanLyBanHang
 
                 MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Clear();
-                return;
             }
-
             // Nếu không phải đang sửa, thì không làm gì cả
             if (!isModified)
             {
@@ -305,9 +325,6 @@ namespace QuanLyBanHang
             string filePath = GlobalSettings.nhanvienFile;
             NhanVien.SaveList(nhanvienList, filePath);
             isModified = false;
-
-            MessageBox.Show("Đã lưu thay đổi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void btn_skip_Click(object sender, EventArgs e)
@@ -358,7 +375,7 @@ namespace QuanLyBanHang
                 }
                 if (result == DialogResult.Yes)
                 {
-                    string filePath = GlobalSettings.nhanvienFile;  
+                    string filePath = GlobalSettings.nhanvienFile;
                     NhanVien.SaveList(nhanvienList, filePath);
                     isModified = false;
                     MessageBox.Show("Đã lưu thay đổi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -366,39 +383,15 @@ namespace QuanLyBanHang
 
             }
         }
-
-        private void btn_sua_Click(object sender, EventArgs e)
-        {
-            txt_manv.Enabled = false; // Khóa Mã NV khi sửa
-            if (dgv_nhanvien.CurrentRow == null)
-            {
-                MessageBox.Show("Vui lòng chọn nhân viên cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Lấy object NhanVien từ dòng đang chọn
-            if (dgv_nhanvien.CurrentRow.DataBoundItem is NhanVien nv)
-            {
-                txt_manv.Text = nv.MaNV; // get-only
-                txt_ten.Text = nv.TenNV;
-                txt_diachi.Text = nv.DiaChi;
-                txt_sdt.Text = nv.DienThoai;
-                dtp_NgaySinh.Value = nv.NgaySinh == default ? DateTime.Today : nv.NgaySinh;
-                chk_Nam.Checked = nv.GioiTinh;
-                chk_Nu.Checked = !nv.GioiTinh;
-
-                //Lưu reference đến nhân viên đang sửa
-                isEditing = true;
-                originalNV = nv;
-            }
-        }
-
         private void btn_esc_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        
+        private void btn_Dong_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

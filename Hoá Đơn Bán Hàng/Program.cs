@@ -10,12 +10,15 @@ namespace QuanLyBanHang
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new DangNhap());
-            Application.Run(new HoaDonBanHang());
+            Application.Run(new DangNhap());
             //Application.Run(new HoaDonBanHang());
-        }   
+            //Application.Run(new DanhMucHangHoa());
+            //Application.Run(new DanhMucNhanVien());
+        }
     }
 }

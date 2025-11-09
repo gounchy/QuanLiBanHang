@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            btn_esc = new Button();
             btn_skip = new Button();
             btn_luu = new Button();
             btn_sua = new Button();
             btn_xoa = new Button();
             btn_themnv = new Button();
-            panel2 = new Panel();
             dtp_NgaySinh = new DateTimePicker();
             chk_Nu = new CheckBox();
             chk_Nam = new CheckBox();
@@ -57,43 +54,20 @@
             GioiTinh = new DataGridViewTextBoxColumn();
             dienthoai = new DataGridViewTextBoxColumn();
             Diachi = new DataGridViewTextBoxColumn();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1 = new Panel();
+            btn_Dong = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_nhanvien).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(btn_esc);
-            panel1.Controls.Add(btn_skip);
-            panel1.Controls.Add(btn_luu);
-            panel1.Controls.Add(btn_sua);
-            panel1.Controls.Add(btn_xoa);
-            panel1.Controls.Add(btn_themnv);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 538);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1190, 44);
-            panel1.TabIndex = 0;
-            // 
-            // btn_esc
-            // 
-            btn_esc.Location = new Point(1002, 11);
-            btn_esc.Margin = new Padding(3, 2, 3, 2);
-            btn_esc.Name = "btn_esc";
-            btn_esc.Size = new Size(82, 22);
-            btn_esc.TabIndex = 0;
-            btn_esc.Text = "Đóng";
-            btn_esc.UseVisualStyleBackColor = true;
-            btn_esc.Click += btn_esc_Click;
             // 
             // btn_skip
             // 
-            btn_skip.Location = new Point(818, 11);
+            btn_skip.Location = new Point(1127, 199);
             btn_skip.Margin = new Padding(3, 2, 3, 2);
             btn_skip.Name = "btn_skip";
-            btn_skip.Size = new Size(82, 22);
+            btn_skip.Size = new Size(82, 31);
             btn_skip.TabIndex = 0;
             btn_skip.Text = "Bỏ Qua";
             btn_skip.UseVisualStyleBackColor = true;
@@ -101,10 +75,10 @@
             // 
             // btn_luu
             // 
-            btn_luu.Location = new Point(619, 11);
+            btn_luu.Location = new Point(928, 199);
             btn_luu.Margin = new Padding(3, 2, 3, 2);
             btn_luu.Name = "btn_luu";
-            btn_luu.Size = new Size(82, 22);
+            btn_luu.Size = new Size(82, 31);
             btn_luu.TabIndex = 0;
             btn_luu.Text = "Lưu";
             btn_luu.UseVisualStyleBackColor = true;
@@ -112,10 +86,10 @@
             // 
             // btn_sua
             // 
-            btn_sua.Location = new Point(445, 11);
+            btn_sua.Location = new Point(754, 199);
             btn_sua.Margin = new Padding(3, 2, 3, 2);
             btn_sua.Name = "btn_sua";
-            btn_sua.Size = new Size(82, 22);
+            btn_sua.Size = new Size(82, 31);
             btn_sua.TabIndex = 0;
             btn_sua.Text = "Sửa";
             btn_sua.UseVisualStyleBackColor = true;
@@ -123,10 +97,10 @@
             // 
             // btn_xoa
             // 
-            btn_xoa.Location = new Point(249, 11);
+            btn_xoa.Location = new Point(558, 199);
             btn_xoa.Margin = new Padding(3, 2, 3, 2);
             btn_xoa.Name = "btn_xoa";
-            btn_xoa.Size = new Size(82, 22);
+            btn_xoa.Size = new Size(82, 31);
             btn_xoa.TabIndex = 0;
             btn_xoa.Text = "Xoá";
             btn_xoa.UseVisualStyleBackColor = true;
@@ -134,42 +108,19 @@
             // 
             // btn_themnv
             // 
-            btn_themnv.Location = new Point(52, 11);
+            btn_themnv.Location = new Point(361, 199);
             btn_themnv.Margin = new Padding(3, 2, 3, 2);
             btn_themnv.Name = "btn_themnv";
-            btn_themnv.Size = new Size(82, 22);
+            btn_themnv.Size = new Size(82, 31);
             btn_themnv.TabIndex = 0;
             btn_themnv.Text = "Thêm";
             btn_themnv.UseVisualStyleBackColor = true;
             btn_themnv.Click += btn_themnv_Click;
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(dtp_NgaySinh);
-            panel2.Controls.Add(chk_Nu);
-            panel2.Controls.Add(chk_Nam);
-            panel2.Controls.Add(txt_ten);
-            panel2.Controls.Add(txt_sdt);
-            panel2.Controls.Add(txt_diachi);
-            panel2.Controls.Add(txt_manv);
-            panel2.Controls.Add(label7);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(label1);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1190, 183);
-            panel2.TabIndex = 1;
-            // 
             // dtp_NgaySinh
             // 
             dtp_NgaySinh.Format = DateTimePickerFormat.Short;
-            dtp_NgaySinh.Location = new Point(781, 118);
+            dtp_NgaySinh.Location = new Point(1109, 120);
             dtp_NgaySinh.Margin = new Padding(3, 2, 3, 2);
             dtp_NgaySinh.Name = "dtp_NgaySinh";
             dtp_NgaySinh.Size = new Size(303, 26);
@@ -178,7 +129,7 @@
             // chk_Nu
             // 
             chk_Nu.AutoSize = true;
-            chk_Nu.Location = new Point(291, 125);
+            chk_Nu.Location = new Point(588, 138);
             chk_Nu.Margin = new Padding(3, 2, 3, 2);
             chk_Nu.Name = "chk_Nu";
             chk_Nu.Size = new Size(52, 23);
@@ -190,7 +141,7 @@
             // chk_Nam
             // 
             chk_Nam.AutoSize = true;
-            chk_Nam.Location = new Point(170, 125);
+            chk_Nam.Location = new Point(467, 138);
             chk_Nam.Margin = new Padding(3, 2, 3, 2);
             chk_Nam.Name = "chk_Nam";
             chk_Nam.Size = new Size(63, 23);
@@ -201,7 +152,7 @@
             // 
             // txt_ten
             // 
-            txt_ten.Location = new Point(155, 85);
+            txt_ten.Location = new Point(469, 87);
             txt_ten.Margin = new Padding(3, 2, 3, 2);
             txt_ten.Name = "txt_ten";
             txt_ten.Size = new Size(284, 26);
@@ -210,7 +161,7 @@
             // 
             // txt_sdt
             // 
-            txt_sdt.Location = new Point(781, 82);
+            txt_sdt.Location = new Point(1109, 84);
             txt_sdt.Margin = new Padding(3, 2, 3, 2);
             txt_sdt.Name = "txt_sdt";
             txt_sdt.Size = new Size(303, 26);
@@ -219,7 +170,7 @@
             // 
             // txt_diachi
             // 
-            txt_diachi.Location = new Point(781, 42);
+            txt_diachi.Location = new Point(1109, 44);
             txt_diachi.Margin = new Padding(3, 2, 3, 2);
             txt_diachi.Name = "txt_diachi";
             txt_diachi.Size = new Size(303, 26);
@@ -228,7 +179,7 @@
             // 
             // txt_manv
             // 
-            txt_manv.Location = new Point(155, 47);
+            txt_manv.Location = new Point(469, 49);
             txt_manv.Margin = new Padding(3, 2, 3, 2);
             txt_manv.Name = "txt_manv";
             txt_manv.Size = new Size(284, 26);
@@ -238,7 +189,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(657, 125);
+            label7.Location = new Point(985, 127);
             label7.Name = "label7";
             label7.Size = new Size(76, 19);
             label7.TabIndex = 1;
@@ -247,7 +198,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(64, 125);
+            label4.Location = new Point(361, 138);
             label4.Name = "label4";
             label4.Size = new Size(70, 19);
             label4.TabIndex = 1;
@@ -256,7 +207,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(657, 50);
+            label6.Location = new Point(985, 52);
             label6.Name = "label6";
             label6.Size = new Size(58, 19);
             label6.TabIndex = 1;
@@ -265,7 +216,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(47, 50);
+            label3.Location = new Point(361, 52);
             label3.Name = "label3";
             label3.Size = new Size(98, 19);
             label3.TabIndex = 1;
@@ -274,7 +225,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(657, 85);
+            label5.Location = new Point(985, 87);
             label5.Name = "label5";
             label5.Size = new Size(80, 19);
             label5.TabIndex = 1;
@@ -283,7 +234,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(44, 92);
+            label2.Location = new Point(358, 94);
             label2.Name = "label2";
             label2.Size = new Size(101, 19);
             label2.TabIndex = 1;
@@ -292,11 +243,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(445, 9);
+            label1.Location = new Point(716, 6);
             label1.Name = "label1";
-            label1.Size = new Size(326, 37);
+            label1.Size = new Size(276, 31);
             label1.TabIndex = 0;
             label1.Text = "DANH MỤC NHÂN VIÊN";
             // 
@@ -305,11 +256,11 @@
             dgv_nhanvien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_nhanvien.Columns.AddRange(new DataGridViewColumn[] { Manv, Tennv, NgaySinh, GioiTinh, dienthoai, Diachi });
             dgv_nhanvien.Dock = DockStyle.Fill;
-            dgv_nhanvien.Location = new Point(0, 183);
+            dgv_nhanvien.Location = new Point(3, 259);
             dgv_nhanvien.Margin = new Padding(3, 2, 3, 2);
             dgv_nhanvien.Name = "dgv_nhanvien";
             dgv_nhanvien.RowHeadersWidth = 51;
-            dgv_nhanvien.Size = new Size(1190, 355);
+            dgv_nhanvien.Size = new Size(1612, 421);
             dgv_nhanvien.TabIndex = 2;
             dgv_nhanvien.CellFormatting += dgv_nhanvien_CellFormatting;
             // 
@@ -362,33 +313,80 @@
             Diachi.MinimumWidth = 6;
             Diachi.Name = "Diachi";
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel1.Controls.Add(dgv_nhanvien, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 37.82991F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 62.17009F));
+            tableLayoutPanel1.Size = new Size(1618, 682);
+            tableLayoutPanel1.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(btn_Dong);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(txt_diachi);
+            panel1.Controls.Add(dtp_NgaySinh);
+            panel1.Controls.Add(txt_manv);
+            panel1.Controls.Add(btn_skip);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(txt_sdt);
+            panel1.Controls.Add(btn_themnv);
+            panel1.Controls.Add(chk_Nu);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(btn_xoa);
+            panel1.Controls.Add(btn_luu);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(txt_ten);
+            panel1.Controls.Add(chk_Nam);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(btn_sua);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1612, 251);
+            panel1.TabIndex = 0;
+            // 
+            // btn_Dong
+            // 
+            btn_Dong.Location = new Point(1318, 201);
+            btn_Dong.Name = "btn_Dong";
+            btn_Dong.Size = new Size(94, 29);
+            btn_Dong.TabIndex = 6;
+            btn_Dong.Text = "Đóng";
+            btn_Dong.UseVisualStyleBackColor = true;
+            btn_Dong.Click += btn_Dong_Click;
+            // 
             // DanhMucNhanVien
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1190, 582);
-            Controls.Add(dgv_nhanvien);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            ClientSize = new Size(1618, 682);
+            Controls.Add(tableLayoutPanel1);
             Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(3, 2, 3, 2);
             Name = "DanhMucNhanVien";
-            Text = "Danh Mục Nhân Viên";
+            Text = "DANH MỤC NHÂN VIÊN";
+            WindowState = FormWindowState.Maximized;
             FormClosing += DanhMucNhanVien_FormClosing;
             Load += DanhMucNhanVien_Load;
-            panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_nhanvien).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
-
-
         #endregion
-
-        private Panel panel1;
-        private Panel panel2;
         private Label label7;
         private Label label4;
         private Label label6;
@@ -407,7 +405,6 @@
         private Button btn_skip;
         private Button btn_luu;
         private Button btn_sua;
-        private Button btn_esc;
         private TextBox txt_sdt;
         private CheckBox chk_Nu;
         private DataGridView dgv_nhanvien;
@@ -417,5 +414,8 @@
         private DataGridViewTextBoxColumn GioiTinh;
         private DataGridViewTextBoxColumn dienthoai;
         private DataGridViewTextBoxColumn Diachi;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private Button btn_Dong;
     }
 }

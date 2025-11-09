@@ -16,6 +16,7 @@ namespace QuanLyBanHang
 
     public partial class DanhMucHangHoa : Form
     {
+        private List<Khach> khList;
         private List<NhanVien> nvList;
         private string productsFile = GlobalSettings.productsFile;
         private bool isEditing = false;
@@ -54,10 +55,41 @@ namespace QuanLyBanHang
                 });
             }
 
+            if (dgv_HangHoa.Columns["ThanhTien"] != null)
+            {
+                dgv_HangHoa.Columns["ThanhTien"].HeaderText = "Thành Tiền";
+                dgv_HangHoa.Columns["ThanhTien"].Width = 340;
+            }
 
-            dgv_HangHoa.DataSource = null;
+            //dgv_HangHoa.DataSource = null;
             dgv_HangHoa.DataSource = list;
+
         }
+
+        private List<Khach> LoadKhachFromCSV(string filePath)
+        {
+            List<Khach> list = new List<Khach>();
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("Không tìm thấy file khách hàng: " + filePath);
+                return list;
+            }
+
+            var lines = File.ReadAllLines(filePath).Skip(1); // bỏ dòng tiêu đề
+            foreach (var line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                var parts = line.Split(',');
+
+                if (parts.Length >= 4)
+                {
+                    list.Add(new Khach(parts[0], parts[1], parts[2], parts[3]));
+                }
+            }
+
+            return list;
+        }
+
 
         private void DanhMucHangHoa_Load(object sender, EventArgs e)
         {
@@ -65,10 +97,22 @@ namespace QuanLyBanHang
             proList = pro.GetList();
             dgv_HangHoa.DataSource = proList;
 
+            if (dgv_HangHoa.Columns["ThanhTien"] != null)
+            {
+                dgv_HangHoa.Columns["ThanhTien"].HeaderText = "Thành Tiền";
+                dgv_HangHoa.Columns["ThanhTien"].Width = 340;
+            }
+
             nvList = new NhanVien().GetList();
             cb_TenNV.DataSource = nvList;
             cb_TenNV.DisplayMember = "TenNV";
             cb_TenNV.ValueMember = "MaNV";
+
+            string fileKhach = GlobalSettings.khachhangFile;
+            khList = LoadKhachFromCSV(fileKhach);
+            cbb_TenKH.DataSource = khList;
+            cbb_TenKH.DisplayMember = "TenKhach";  // tên hiển thị trên combobox
+            cbb_TenKH.ValueMember = "MaKhach";
         }
 
         private void txt_Filter_TextChanged(object sender, EventArgs e)
@@ -281,13 +325,21 @@ namespace QuanLyBanHang
             pro.UpdateQuantity(maHang, soLuongConLai);
 
 
+            if (cbb_TenKH.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng trước khi thanh toán!");
+                return;
+            }
+            var khach = (Khach)cbb_TenKH.SelectedItem;
+
             var hoaDon = new HoaDon
             {
                 MaHD = maHD,
                 MaNV = cb_TenNV.SelectedValue.ToString(),
-                MaKhach = "KH001",
+                MaKhach = khach.MaKhach,  //Lấy từ combobox
                 NgayLap = DateTime.Now
             };
+
 
             hoaDon.ChiTiet.Add(new HoaDonChiTiet
             {
@@ -329,20 +381,19 @@ namespace QuanLyBanHang
             cb_TenNV.ValueMember = "MaNV";
             cb_TenNV.SelectedIndex = -1;
 
-            //string fileKhach = @"SanPham\khachhang.csv";
-            //khList = LoadKhachFromCSV(fileKhach);
-            //cb_TenKH.DataSource = khList;
-            //cb_TenKH.DisplayMember = "TenKhach";
-            //cb_TenKH.ValueMember = "MaKhach";
-            //cb_TenKH.SelectedIndex = -1;
         }
         private void cb_TenNV_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cb_TenNV.SelectedIndex >= 0)
             {
                 var nv = (NhanVien)cb_TenNV.SelectedItem;
-                
+
             }
+        }
+
+        private void cbb_TenKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

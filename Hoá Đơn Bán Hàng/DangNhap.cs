@@ -21,22 +21,60 @@ namespace Hoá_Đơn_Bán_Hàng
 
         private void btn_DangNhap_Click(object sender, EventArgs e)
         {
-            string username = txt_DangNhap.Text.Trim();
-            string password = txt_MatKhau.Text.Trim();
+            string tenDN = txt_DangNhap.Text.Trim();
+            string matKhau = txt_MatKhau.Text.Trim();
 
-            // Kiểm tra tài khoản và mật khẩu
-            if (username == "admin" && password == "123")
+            // Giả sử danh sách tài khoản lưu sẵn trong GlobalSettings
+            var taiKhoan = GlobalSettings.DanhSachTaiKhoan
+                .FirstOrDefault(tk => tk.TenDangNhap == tenDN && tk.MatKhau == matKhau);
+
+            if (taiKhoan != null)
             {
-                MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                HoaDonBanHang hoaDonBanHangForm = new HoaDonBanHang();
-                hoaDonBanHangForm.Show();
+                GlobalSettings.TaiKhoanHienTai = taiKhoan;
+                MessageBox.Show("Đăng nhập thành công!");
+                this.Hide();
+
+                // mở form chính sau khi đăng nhập
+                var formChinh = new HoaDonBanHang();
+                formChinh.ShowDialog();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Sai tài khoản hoặc mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
-        
+        private void btn_Thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_DoiMatKhau_Click(object sender, EventArgs e)
+        {
+            string tenDN = txt_DangNhap.Text.Trim();
+
+            if (string.IsNullOrEmpty(tenDN))
+            {
+                MessageBox.Show("Vui lòng nhập tài khoản trước khi đổi mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Tìm tài khoản trong danh sách
+            var tk = GlobalSettings.DanhSachTaiKhoan.FirstOrDefault(x => x.TenDangNhap == tenDN);
+            if (tk == null)
+            {
+                MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Mở form đổi mật khẩu, truyền tài khoản tương ứng
+            DoiMatKhau form = new DoiMatKhau(tk);
+            form.ShowDialog();
+
+            txt_DangNhap.Clear();
+            txt_MatKhau.Clear();
+        }
     }
 }

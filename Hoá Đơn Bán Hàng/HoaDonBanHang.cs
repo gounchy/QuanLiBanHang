@@ -146,11 +146,28 @@ namespace Hoá_Đơn_Bán_Hàng
 
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?",
+                                 "Đăng xuất",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                DangNhap dangNhap = new DangNhap();
+                // Đóng tất cả form con (nếu có)
+                foreach (Form frm in Application.OpenForms.Cast<Form>().ToList())
+                {
+                    if (frm != this)
+                        frm.Close();
+                }
+
+                // Ẩn form chính trước khi mở lại form đăng nhập
+                this.Hide();
+
+                // Tạo lại form đăng nhập mới
+                var dangNhap = new DangNhap();
                 dangNhap.Show();
+
+                // Đóng form chính
+                this.Close();
             }
         }
 

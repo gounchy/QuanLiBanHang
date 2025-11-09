@@ -1,24 +1,23 @@
-Ma,Ten,Loai,Gia,SL
 1,Chuột Logitech M185,Điện tử,200000,15
-2,Bàn phím cơ Akko 3087,Điện tử,1200000,8
-3,Tai nghe Gaming Razer,Điện tử,1500000,12
+2,Bàn phím cơ Akko 3087,Điện tử,1200000,5
+3,Tai nghe Gaming Razer,Điện tử,1500000,11
 4,Màn hình Dell 24 inch,Điện tử,3500000,5
-5,Laptop Acer Aspire 5,Điện tử,14500000,6
-6,Điện thoại Samsung A14,Điện tử,4500000,10
-7,Ốp lưng iPhone 15,Phụ kiện,150000,26
-8,Sạc dự phòng Anker 10000mAh,Điện tử,600000,20
+5,Laptop Acer Aspire 5,Điện tử,14500000,5
+6,Điện thoại Samsung A14,Điện tử,4500000,9
+7,Ốp lưng iPhone 15,Phụ kiện,150000,23
+8,Sạc dự phòng Anker 10000mAh,Điện tử,600000,19
 9,Loa Bluetooth JBL Go 3,Điện tử,1200000,14
-10,USB SanDisk 32GB,Lưu trữ,200000,25
+10,USB SanDisk 32GB,Lưu trữ,200000,23
 11,Ổ cứng HDD 1TB Seagate,Lưu trữ,1200000,10
-12,Ổ cứng SSD 500GB Samsung,Lưu trữ,2000000,12
+12,Ổ cứng SSD 500GB Samsung,Lưu trữ,2000000,11
 13,Áo thun nam basic,Thời trang,150000,40
-14,Áo sơ mi nữ trắng,Thời trang,250000,35
+14,Áo sơ mi nữ trắng,Thời trang,250000,34
 15,Quần jeans nam xanh,Thời trang,400000,25
 16,Váy công sở,Thời trang,350000,18
 17,Giày sneaker Nike,Thời trang,1800000,15
-18,Giày sandal nữ,Thời trang,500000,20
+18,Giày sandal nữ,Thời trang,500000,19
 19,Balo laptop Targus,Phụ kiện,900000,22
-20,Túi xách nữ da PU,Thời trang,700000,18
+20,Túi xách nữ da PU,Thời trang,700000,17
 21,Nồi cơm điện Sharp 1.8L,Gia dụng,1200000,10
 22,Bếp điện từ Sunhouse,Gia dụng,1800000,12
 23,Quạt đứng Asia,Gia dụng,600000,15
@@ -41,7 +40,7 @@ Ma,Ten,Loai,Gia,SL
 40,Tủ quần áo gỗ 2 cánh,Nội thất,4500000,5
 41,Chăn ga gối cotton 4 món,Nội thất,1200000,15
 42,Nệm cao su Dunlopillo,Nội thất,8000000,3
-43,Sữa tươi Vinamilk 1L,Thực phẩm,35000,100
+43,Sữa tươi Vinamilk 1L,Thực phẩm,35000,99
 44,Mì Hảo Hảo thùng 30 gói,Thực phẩm,120000,50
 45,Gạo ST25 5kg,Thực phẩm,180000,30
 46,Dầu ăn Neptune 1L,Thực phẩm,55000,40
@@ -67,7 +66,7 @@ Ma,Ten,Loai,Gia,SL
 66,Bếp gas mini Namilux,Đồ bếp,350000,12
 67,Lò vi sóng Sharp 23L,Điện máy,2200000,8
 68,Camera an ninh Xiaomi,Điện tử,700000,20
-69,Router Wifi TP-Link,Điện tử,600000,18
+69,Router Wifi TP-Link,Điện tử,600000,17
 70,Ổ cắm điện 5 lỗ Điện Quang,Điện tử,120000,30
 71,Dây sạc iPhone Anker,Phụ kiện,250000,40
 72,Pin tiểu AA Panasonic 4 viên,Phụ kiện,50000,60
@@ -77,5 +76,3 @@ Ma,Ten,Loai,Gia,SL
 76,Giấy in A4 Double A 500 tờ,Văn phòng phẩm,90000,30
 77,Bảng trắng văn phòng 1.2m,Văn phòng phẩm,700000,10
 78,Giá để hồ sơ 3 ngăn,Văn phòng phẩm,120000,20
-79,Kéo văn phòng Deli,Văn phòng phẩm,30000,40
-80,File còng 2 mặt A4,Văn phòng phẩm,40000,35

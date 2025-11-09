@@ -39,23 +39,6 @@ namespace QuanLyBanHang
 
         public List<Products> GetList(string fileName = "")
         {
-            //List<Products> proList = new List<Products>();
-            //fileName = (fileName == "") ? GlobalSettings.productsFile : fileName;
-
-            //using (StreamReader reader = new StreamReader(fileName))
-            //{
-            //    if (!reader.EndOfStream) reader.ReadLine();
-
-            //    string line = "";
-            //    while (!reader.EndOfStream)
-            //    {
-            //        line = reader.ReadLine();
-            //        Products pro = new Products(line);
-            //        proList.Add(pro);
-            //    }
-            //}
-            //return proList;
-
             List<Products> proList = new List<Products>();
             fileName = (fileName == "") ? GlobalSettings.productsFile : fileName;
 
